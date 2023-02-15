@@ -8,8 +8,8 @@
 
     $checkuser = "SELECT * FROM user WHERE email = '$email' and password = '$current'";
     $result = mysqli_query($conn,$checkuser);
-    
-    if($result > 0){
+
+    if(mysqli_num_rows($result) > 0){
 
         $updatePass = mysqli_query($conn,"UPDATE user SET password = '$new' WHERE email = '$email'");
 
