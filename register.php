@@ -9,16 +9,20 @@
 
 
     if(mysqli_num_rows($checkQuery) > 0){
-        echo "USER ALREADY EXIST";
+        $response['error'] = "002";
+        $response['message'] = "USER ALREADY EXIST";
     }
     else{
         $insertQuery = "INSERT INTO user(username, email, password) VALUES('$username', '$email', '$password')";
         $result = mysqli_query($conn, $insertQuery);
 
         if($result){
-            echo "registeration successful";
+            $response['error'] = "000";
+            $response['message'] = "registeration successful";
         }else{
-            echo "registration failed";
+            $response['error'] = "001";
+            $response['message'] = "registration failed";
         }
     }
+    echo json_encode($response);
 ?>
